@@ -4,7 +4,7 @@ import { Component } from 'react';
 import Navbar from './Navbar';
 import Home from './Home';
 import Gallery from './Gallery';
-// import { Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -18,8 +18,12 @@ class App extends Component {
     return (
       <main>
         <Navbar />
-        {/* <Home /> */}
-        <Gallery />
+        <Switch>
+          <Route exact path='/' render={Home}/>
+          <Route path='/gallery' render={Gallery} />
+
+        </Switch>
+       
       </main>
     )
   }
