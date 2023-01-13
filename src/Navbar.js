@@ -3,7 +3,13 @@ import './Navbar.css'
 
 const Navbar = () => {
     return (
-        <h1>Sup?</h1>
+       <nav>
+        <h1>where the heArt is</h1>
+        <p>
+            <span>Home</span>
+            <span>My Gallery</span>
+        </p>
+       </nav>
     )
 }
 
