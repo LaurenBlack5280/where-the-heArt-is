@@ -13,8 +13,7 @@ class Hero extends Component {
         return (
             <article>
                 <img className="hero-image"
-                    src="https://www.artic.edu/iiif/2/1adf2696-8489-499b-cad2-821d7fde4b33/full/843,/0/default.jpg
-                    "
+                    src=""
                     alt="placeholder"
                 />
                 <h2>title: </h2>
