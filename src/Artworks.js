@@ -7,9 +7,11 @@ console.log(data)
     const artCards = data.map(data => {
         return (
             <Art
+            key={data.id}
             id={data.id} 
             title={data.title}
-            artist_title={data.artist_title} 
+            artist_title={data.artist_title}
+            description={data.description} 
             image_id={data.image_id}
             config={config}
             />
