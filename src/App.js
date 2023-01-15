@@ -19,7 +19,14 @@ class App extends Component {
         iiif_url: "https://www.artic.edu/iiif/2"
       }
     }
-   
+  }
+
+  componentDidMount() {
+    fetch('https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=10&fields=id,title,image_id,artist_title')
+    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+    })
   }
 
   render() {
