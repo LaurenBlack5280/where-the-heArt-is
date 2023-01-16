@@ -23,6 +23,7 @@ const Artworks = ({ data, config, addFavorite }) => {
     return (
         <div className="artworks-container">
         {artCards}
+        {console.log(artCards)}
         </div>
         
     )

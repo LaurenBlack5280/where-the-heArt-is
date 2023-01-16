@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
 import Navbar from './Navbar';
@@ -11,17 +10,15 @@ class App extends Component {
     super()
     this.state = {
       data: [],
-      config: {
-        // iiif_url: ""
-      }, 
-      // myGallery: []
+      config: {}, 
+      myGallery: []
     }
   }
 
-  addFavorite = id => { 
-    const favoriteArt = this.state.data.filter(data => data.id === id)
-    this.setState({ myGallery: favoriteArt})
-   
+  addFavorite = (title) => { 
+    console.log('hello')
+    const favoriteArt = this.state.data.filter(data => data.title === title)
+    this.setState({ myGallery: [...this.state.myGallery, favoriteArt]})
   }
 
  
@@ -40,35 +37,17 @@ class App extends Component {
 
   
 
-  // getImages = () => {
-  //   // endpoint + image_id + /full/843,/0/default.jpg
-  //   // for each data point
-  //   //  get the image id
-  //   //    create a fetch call for each image
-  //   //      promise is image src
-  //   const endpoint = this.state.config.iiif_url
-  //   const imageId = this.state.data.map(data => {
-  //     data.image_id
-  //   })
-  //   const imageSize = '/full/400,/0/default.jpg'
-  //   const url = `${endpoint}${imageId}${imageSize}`
-  //   const promise = fetch(url)
-  //   .then(res => res.json())
-  //   return promise
-  // }
 
   render() {
     return (
       <main>
         <Navbar />
-        <Home data={this.state.data} config={this.state.config} addFavorite={this.addFavorite}/>
-
-        
-        {/* <Switch>
-          
-          <Route exact path='/' component={Home} data={this.state.data} config={this.state.config}/>
-          <Route path='/gallery' component={Gallery} />
-        </Switch> */}
+        <Switch>
+          <Route exact path='/' render={ () =>  
+            <Home data={this.state.data} config={this.state.config} addFavorite={this.addFavorite}/> }/>
+          <Route exact path='/gallery' render={ () =>
+            <Gallery data={this.state.data} config={this.state.config} addFavorite={this.addFavorite}/>} />
+        </Switch>
       </main>
     )
   }
