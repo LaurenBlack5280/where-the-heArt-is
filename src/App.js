@@ -10,13 +10,9 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      data: [
-        // {id: 1, title: "Great Wave", artist_title: "An Artist", description:"This will be the alt image text", image_id: 123},
-        // {id: 2, title: "Mona Lisa", artist_title: "Another Artist", description:"This will be the alt image text", image_id: 456},
-        // {id: 3, title: "Chivalry", artist_title: "Jon Toms", description:"This will be the alt image text", image_id: 789},
-      ],
+      data: [],
       config: {
-        // iiif_url: "https://www.artic.edu/iiif/2"
+        // iiif_url: ""
       }, 
       // myGallery: []
     }
@@ -28,8 +24,10 @@ class App extends Component {
    
   }
 
+ 
+
   componentDidMount() {
-    fetch('https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=10&fields=id,title,image_id,artist_title')
+    fetch('https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=10&fields=id,title,image_id,artist_title,description')
     .then(res => res.json())
     .then(res => {
       console.log('response', res)
@@ -38,6 +36,19 @@ class App extends Component {
         config: res.config
       })
     })
+  }
+
+  
+
+  getImages = () => {
+    // endpoint + image_id + /full/843,/0/default.jpg
+    const imageId = this.state.data.map(data => data.image_id)
+    const endpoint = this.state.config.iiif_url
+    const imageSize = '/full/400,/0/default.jpg'
+    const url = `${endpoint}${imageId}${imageSize}`
+    const promise = fetch(url)
+    .then(res => res.json())
+    return promise
   }
 
   render() {
