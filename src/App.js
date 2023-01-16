@@ -40,16 +40,22 @@ class App extends Component {
 
   
 
-  getImages = () => {
-    // endpoint + image_id + /full/843,/0/default.jpg
-    const imageId = this.state.data.map(data => data.image_id)
-    const endpoint = this.state.config.iiif_url
-    const imageSize = '/full/400,/0/default.jpg'
-    const url = `${endpoint}${imageId}${imageSize}`
-    const promise = fetch(url)
-    .then(res => res.json())
-    return promise
-  }
+  // getImages = () => {
+  //   // endpoint + image_id + /full/843,/0/default.jpg
+  //   // for each data point
+  //   //  get the image id
+  //   //    create a fetch call for each image
+  //   //      promise is image src
+  //   const endpoint = this.state.config.iiif_url
+  //   const imageId = this.state.data.map(data => {
+  //     data.image_id
+  //   })
+  //   const imageSize = '/full/400,/0/default.jpg'
+  //   const url = `${endpoint}${imageId}${imageSize}`
+  //   const promise = fetch(url)
+  //   .then(res => res.json())
+  //   return promise
+  // }
 
   render() {
     return (
