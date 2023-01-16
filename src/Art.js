@@ -6,15 +6,22 @@ class Art extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isLoved: false
+            isLoved: false,
+            // myGallery: []
         }
     }
 
     toggleLoved = () => {
         let userLoved = this.state.isLoved
         userLoved = !userLoved
-        this.setState({ isLoved: userLoved })
+        this.setState({ 
+            isLoved: userLoved 
+        })
+        // this.props.addFavorite(id)
+        // console.log('hopeful', this.state.myGallery)
     }
+
+    
 
     render() {
         return (

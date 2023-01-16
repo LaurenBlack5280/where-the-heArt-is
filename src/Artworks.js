@@ -2,8 +2,8 @@ import React from "react";
 import './Artworks.css'
 import Art from "./Art";
 
-const Artworks = ({ data, config}) => {
-console.log(data)
+const Artworks = ({ data, config, addFavorite }) => {
+
     const artCards = data.map(data => {
         return (
             <Art
@@ -14,6 +14,8 @@ console.log(data)
             description={data.description} 
             image_id={data.image_id}
             config={config}
+            addFavorite={addFavorite}
+            // isLoved={isLoved}
             />
         )
     })

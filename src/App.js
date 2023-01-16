@@ -11,34 +11,41 @@ class App extends Component {
     super()
     this.state = {
       data: [
-        {id: 1, title: "Great Wave", artist_title: "An Artist", description:"This will be the alt image text", image_id: 123},
-        {id: 2, title: "Mona Lisa", artist_title: "Another Artist", description:"This will be the alt image text", image_id: 456},
-        {id: 3, title: "Chivalry", artist_title: "Jon Toms", description:"This will be the alt image text", image_id: 789},
+        // {id: 1, title: "Great Wave", artist_title: "An Artist", description:"This will be the alt image text", image_id: 123},
+        // {id: 2, title: "Mona Lisa", artist_title: "Another Artist", description:"This will be the alt image text", image_id: 456},
+        // {id: 3, title: "Chivalry", artist_title: "Jon Toms", description:"This will be the alt image text", image_id: 789},
       ],
       config: {
-        iiif_url: "https://www.artic.edu/iiif/2"
-      }
+        // iiif_url: "https://www.artic.edu/iiif/2"
+      }, 
+      // myGallery: []
     }
   }
 
-  // addFavorite = id => {
-  //   const favoriteArt = this.state.data.map(data => data.id === id)
-  // }
+  addFavorite = id => { 
+    const favoriteArt = this.state.data.filter(data => data.id === id)
+    this.setState({ myGallery: favoriteArt})
+   
+  }
 
-  // componentDidMount() {
-  //   fetch('https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=10&fields=id,title,image_id,artist_title')
-  //   .then(res => res.json())
-  //   .then(res => {
-  //     console.log(res)
-  //   })
-  // }
+  componentDidMount() {
+    fetch('https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=10&fields=id,title,image_id,artist_title')
+    .then(res => res.json())
+    .then(res => {
+      console.log('response', res)
+      this.setState({ 
+        data: res.data,
+        config: res.config
+      })
+    })
+  }
 
   render() {
     return (
       <main>
         <Navbar />
-        <Home data={this.state.data} config={this.state.config} />
-        {console.log('yo', this.state.data)}
+        <Home data={this.state.data} config={this.state.config} addFavorite={this.addFavorite}/>
+
         
         {/* <Switch>
           
