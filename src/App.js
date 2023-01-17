@@ -17,7 +17,7 @@ class App extends Component {
 
   addFavorite = (title) => { 
     console.log('hello')
-    const favoriteArt = this.state.data.filter(data => data.title === title)
+    const favoriteArt = this.state.data.find(data => data.title === title)
     this.setState({ myGallery: [...this.state.myGallery, favoriteArt]})
   }
 
@@ -46,7 +46,7 @@ class App extends Component {
           <Route exact path='/' render={ () =>  
             <Home data={this.state.data} config={this.state.config} addFavorite={this.addFavorite}/> }/>
           <Route exact path='/gallery' render={ () =>
-            <Gallery data={this.state.data} config={this.state.config} addFavorite={this.addFavorite}/>} />
+            <Gallery data={this.state.myGallery} config={this.state.config} addFavorite={this.addFavorite}/>} />
         </Switch>
       </main>
     )

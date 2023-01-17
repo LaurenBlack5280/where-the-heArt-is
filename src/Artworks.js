@@ -5,16 +5,17 @@ import PropTypes from "prop-types";
 
 
 const Artworks = ({ data, config, addFavorite }) => {
-
-    const artCards = data.map(data => {
+    console.log('info', data)
+    const artCards = data.map(artPiece => {
+        console.log('art', artPiece)
         return (
             <Art
-            key={data.id}
-            id={data.id} 
-            title={data.title}
-            artist_title={data.artist_title}
-            description={data.description} 
-            image_id={data.image_id}
+            key={artPiece.id}
+            id={artPiece.id} 
+            title={artPiece.title}
+            artist_title={artPiece.artist_title}
+            description={artPiece.description} 
+            image_id={artPiece.image_id}
             config={config}
             addFavorite={addFavorite}
             // isLoved={isLoved}
@@ -25,7 +26,7 @@ const Artworks = ({ data, config, addFavorite }) => {
     return (
         <div className="artworks-container">
         {artCards}
-        {console.log(artCards)}
+        {console.log('art cards', artCards)}
         </div>
         
     )
@@ -35,6 +36,6 @@ export default Artworks
 
 Artworks.propTypes = {
     data: PropTypes.array.isRequired,
-    config: PropTypes.string.isRequired,
+    // config: PropTypes.object.isRequired,
     addFavorite: PropTypes.func.isRequired
 }

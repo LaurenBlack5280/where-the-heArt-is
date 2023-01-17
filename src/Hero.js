@@ -9,30 +9,45 @@ class Hero extends Component {
         }
     }
 
+    toggleLoved = () => {
+        console.log(this.state.isLoved)
+
+        let userLoved = this.state.isLoved
+        userLoved = !userLoved
+        this.setState({ 
+            isLoved: userLoved 
+        })
+            this.props.addFavorite(this.props.title)
+         }
+
     render() {
+        const imageSrc = `${this.props.config.iiif_url}/${this.props.image_id}/full/400,/0/default.jpg`
         return (
             <article className="hero">
-                 <img className="hero-image"
-                src="https://www.artic.edu/iiif/2/1adf2696-8489-499b-cad2-821d7fde4b33/full/843,/0/default.jpg
-                "
+                <img className="hero-image"
+                src={imageSrc}
                 alt={this.props.description}
                 />
-                
-                <h2>title:{this.props.title}</h2>
-                <h3>artist:{this.props.artist_title}</h3>
-                <button>♡</button>
+                    <h3>title:{this.props.title}</h3>
+                    <h4>artist:{this.props.artist_title}</h4>
+                    <button name='isLoved' value={this.state.isLoved} onClick={(event) => this.toggleLoved(event)}>
+                    {!this.state.isLoved ? (
+                        <label>♡</label>
+                    ) : (
+                        <label>❤️</label> 
+                    ) }
+                    </button>
             </article>
         )
     }
 }
-
 export default Hero
 
 Hero.propTypes = {
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    artist:  PropTypes.string.isRequired,
-    image_id: PropTypes.number.isRequired,
-    addFavorite: PropTypes.func.isRequired,
-    description: PropTypes.string.isRequired
+    id: PropTypes.string,
+    title: PropTypes.string,
+    artist:  PropTypes.string,
+    image_id: PropTypes.number,
+    addFavorite: PropTypes.func,
+    description: PropTypes.string
 }

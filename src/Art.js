@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 
 
 class Art extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             isLoved: false,
             myGallery: []
@@ -22,8 +22,8 @@ class Art extends Component {
         })
             this.props.addFavorite(this.props.title)
          }
-
-    render() {
+         render() {
+        console.log('props', this.props)
         const imageSrc = `${this.props.config.iiif_url}/${this.props.image_id}/full/400,/0/default.jpg`
         return (
             <article className="art">
@@ -31,8 +31,6 @@ class Art extends Component {
                 src={imageSrc}
                 alt={this.props.description}
                 />
-                <form>
-                
                     <h3>title:{this.props.title}</h3>
                     <h4>artist:{this.props.artist_title}</h4>
                     <button name='isLoved' value={this.state.isLoved} onClick={(event) => this.toggleLoved(event)}>
@@ -42,7 +40,6 @@ class Art extends Component {
                         <label>❤️</label> 
                     ) }
                     </button>
-                </form>
             </article>
         )
     }
