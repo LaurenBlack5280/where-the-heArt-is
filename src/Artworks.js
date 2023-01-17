@@ -1,6 +1,8 @@
 import React from "react";
 import './Artworks.css'
 import Art from "./Art";
+import PropTypes from "prop-types";
+
 
 const Artworks = ({ data, config, addFavorite }) => {
 
@@ -30,3 +32,9 @@ const Artworks = ({ data, config, addFavorite }) => {
 }
 
 export default Artworks
+
+Artworks.propTypes = {
+    data: PropTypes.array.isRequired,
+    config: PropTypes.string.isRequired,
+    addFavorite: PropTypes.func.isRequired
+}

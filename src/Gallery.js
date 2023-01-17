@@ -3,6 +3,7 @@ import './Gallery.js'
 // import GalleryArt from "./GalleryArt.js";
 import Art from "./Art.js";
 import Artworks from "./Artworks.js";
+import PropTypes from "prop-types";
 
 const Gallery = ({ data, config, addFavorite }) => {
     return (
@@ -15,16 +16,9 @@ const Gallery = ({ data, config, addFavorite }) => {
     )
 }
 
-
-// const Gallery = () => {
-//     return (
-//         <section className="gallery">
-//             <h1>I'm the Gallery</h1>
-//             <GalleryArt />
-//             <GalleryArt />
-//             <GalleryArt />
-//         </section>
-//     )
-// }
-
 export default Gallery
+Artworks.propTypes = {
+    data: PropTypes.array.isRequired,
+    config: PropTypes.string.isRequired,
+    addFavorite: PropTypes.func.isRequired
+}

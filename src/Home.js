@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Home.css"
 import Hero from "./Hero";
 import Artworks from "./Artworks";
+import PropTypes from "prop-types";
 
 
 const Home = ({ data, config, addFavorite }) => {
@@ -15,3 +16,9 @@ const Home = ({ data, config, addFavorite }) => {
 }
 
 export default Home
+
+Home.propTypes = {
+    data: PropTypes.array.isRequired,
+    config: PropTypes.string.isRequired,
+    addFavorite: PropTypes.func.isRequired
+}

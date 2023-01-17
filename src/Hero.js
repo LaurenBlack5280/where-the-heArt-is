@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Hero.css"
-
+import PropTypes from 'prop-types'
 class Hero extends Component {
     constructor(props) {
         super(props)
@@ -27,3 +27,12 @@ class Hero extends Component {
 }
 
 export default Hero
+
+Hero.propTypes = {
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    artist:  PropTypes.string.isRequired,
+    image_id: PropTypes.number.isRequired,
+    addFavorite: PropTypes.func.isRequired,
+    description: PropTypes.string.isRequired
+}
