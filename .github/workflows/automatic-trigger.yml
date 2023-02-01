@@ -1,0 +1,29 @@
+name: e2e-automatic-trigger-tests
+on: [push]
+
+jobs:
+  e2e-system-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🔔🔔🔔
+        uses: actions/checkout@v3
+
+      - name: Cypress run 🧪
+        uses: cypress-io/github-action@v5
+        with:
+          build: npm run build
+          start: npm run start
+          wait-on: 'http://localhost:3000'
+          command: npm run cypress:headless
+          browser: chrome
+
+      - name: Upload test artifacts 📬
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          if-no-files-found: error
+          name: artifacts
+          path: |
+            ${{ github.workspace }}/cypress/videos
+            ${{ github.workspace }}/cypress/screenshots
