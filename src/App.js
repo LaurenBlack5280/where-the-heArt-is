@@ -1,56 +1,71 @@
-import './App.css';
-import { Component } from 'react';
-import Navbar from './Navbar';
-import Home from './Home';
-import Gallery from './Gallery';
-import { Route, Switch } from 'react-router-dom';
+import './App.css'
+import { Component } from 'react'
+import Navbar from './Navbar'
+import Home from './Home'
+import Gallery from './Gallery'
+import { Route, Switch } from 'react-router-dom'
 
 class App extends Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
       data: [],
-      config: {}, 
+      config: {},
       myGallery: []
     }
   }
 
-  addFavorite = (title) => { 
+  addFavorite = title => {
     console.log('hello')
     const favoriteArt = this.state.data.find(data => data.title === title)
-    this.setState({ myGallery: [...this.state.myGallery, favoriteArt]})
+    this.setState({ myGallery: [...this.state.myGallery, favoriteArt] })
   }
 
- 
-
-  componentDidMount() {
-    fetch('https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=10&fields=id,title,image_id,artist_title,description')
-    .then(res => res.json())
-    .then(res => {
-      console.log('response', res)
-      this.setState({ 
-        data: res.data,
-        config: res.config
+  componentDidMount () {
+    fetch(
+      'https://api.artic.edu/api/v1/artworks/search?query[term][is_public_domain]=true&limit=10&fields=id,title,image_id,artist_title,description'
+    )
+      .then(res => res.json())
+      .then(res => {
+        console.log('response', res)
+        this.setState({
+          data: res.data,
+          config: res.config
+        })
       })
-    })
   }
 
-  
-
-
-  render() {
+  render () {
     return (
       <main>
         <Navbar />
         <Switch>
-          <Route exact path='/' render={ () =>  
-            <Home data={this.state.data} config={this.state.config} addFavorite={this.addFavorite}/> }/>
-          <Route exact path='/gallery' render={ () =>
-            <Gallery data={this.state.myGallery} config={this.state.config} addFavorite={this.addFavorite}/>} />
+          <Route
+            exact
+            path='/'
+            render={() => (
+              <Home
+                data={this.state.data}
+                config={this.state.config}
+                addFavorite={this.addFavorite}
+              />
+            )}
+          />
+          <Route
+            exact
+            path='/gallery'
+            render={() => (
+              <Gallery
+                data={this.state.myGallery}
+                config={this.state.config}
+                addFavorite={this.addFavorite}
+              />
+            )}
+          />
         </Switch>
       </main>
     )
   }
 }
 
-export default App;
+export default App
