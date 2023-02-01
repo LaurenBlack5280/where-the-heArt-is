@@ -1,7 +1,6 @@
 import React from "react";
 import './Gallery.js'
 // import GalleryArt from "./GalleryArt.js";
-import Art from "./Art.js";
 import Artworks from "./Artworks.js";
 import PropTypes from "prop-types";
 
