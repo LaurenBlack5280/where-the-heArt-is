@@ -14,7 +14,7 @@ jobs:
         with:
           build: npm run build
           start: npm run start
-          wait-on: 'http://localhost:3001'
+          wait-on: 'http://localhost:3000'
           spec: cypress/e2e/home_spec.cy.js
           command: npm run cypress
           browser: chrome
